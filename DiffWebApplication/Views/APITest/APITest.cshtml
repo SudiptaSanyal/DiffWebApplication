@@ -1,0 +1,38 @@
+﻿@model DiffWebApplication.Models.APIModel
+@{
+    ViewBag.Title = "Test Diff API here";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>API Integration Test</h2>
+<script language="javascript" type="text/javascript">
+    function LeftClicked() {
+        alert('@Url');
+        alert('@Url' +'PutLeft?ID=&value=AAAAAA=='+'?ID=' + document.getElementById('txtID').value + '&value=' + document.getElementById('txtLeft').value);
+    }
+</script>
+<div>    
+    ID: @Html.TextBox("txtID",@Model.ID)
+</div>
+<br />
+<div>
+    Left: @Html.TextBox("txtLeft", @Model.left)
+    <input type="button" value="Put Left" onclick="location.href='@Url.Action("PutLeft", "APITest")?ID=' + document.getElementById('txtID').value +'&value=' + document.getElementById('txtLeft').value" />
+</div>
+<br />
+<div>
+    Right: @Html.TextBox("txtRight", @Model.right)
+    <input type="button" value="Put Right" onclick="location.href='@Url.Action("PutRight", "APITest")?ID=' + document.getElementById('txtID').value +'&value=' + document.getElementById('txtRight').value" />
+</div>
+<br />
+<input type="button" value="Get Diff" onclick="location.href='@Url.Action("GetDiff", "APITest")?ID=' + document.getElementById('txtID').value" />
+<br />
+Response:
+<br />
+<div id="dvDiffResponse">
+    @Model.diffResponse
+    </div>
+<div id="dvDiffContent">
+    @Model.diffContent
+</div>
+
